@@ -1,0 +1,66 @@
+# CA API Management Suite Configuration
+# This values file allows you to deploy the complete API management stack
+
+# Enable/disable components
+gateway:
+  enabled: true
+  
+portal:
+  enabled: false
+  
+gateway-otk:
+  enabled: false
+
+# Global configuration shared across all charts
+global:
+  # Image registry configuration
+  imageRegistry: ""
+  imagePullSecrets: []
+  
+  # Storage class for persistent volumes
+  storageClass: ""
+  
+  # Cluster domain
+  clusterDomain: cluster.local
+  
+  # License configuration
+  license:
+    secretName: ""
+    accept: false
+  
+  # Database configuration
+  database:
+    # Set to true to create a demo database (not for production)
+    setupDemo: false
+    
+  # TLS/SSL configuration
+  tls:
+    enabled: false
+    
+# Component-specific overrides
+# These will override the default values in each chart
+
+# Gateway configuration overrides
+# gateway:
+#   replicas: 2
+#   image:
+#     registry: docker.io
+#     repository: caapim/gateway
+#     tag: "11.1.2"
+#   service:
+#     type: LoadBalancer
+
+# Portal configuration overrides  
+# portal:
+#   replicas: 1
+#   image:
+#     registry: docker.io
+#     repository: caapim/portal
+#     tag: "5.3.3"
+#   analytics:
+#     enabled: true
+
+# Gateway OTK configuration overrides
+# gateway-otk:
+#   oauth:
+#     enabled: true
