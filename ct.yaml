@@ -26,8 +26,19 @@ chart-dirs:
 check-version-increment: true
 validate-yaml: true
 
-# Exclude certain charts from testing
+# Exclude certain charts from testing (add charts that require special setup)
 excluded-charts: []
 
 # Additional values files to use for testing
 additional-commands: []
+
+# Helm extra set values for testing
+helm-extra-set-args:
+  - --set=global.imageRegistry=docker.io
+  - --set=gateway.enabled=false
+  - --set=portal.enabled=false
+  - --set=gateway-otk.enabled=false
+  - --set=druid.enabled=false
+
+# Debug mode
+debug: false
