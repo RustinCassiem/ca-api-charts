@@ -38,6 +38,13 @@ jobs:
 
       - name: Update chart dependencies
         run: |
+          # Add required helm repositories
+          helm repo add hazelcast https://hazelcast-charts.s3.amazonaws.com/
+          helm repo add influxdata https://helm.influxdata.com/
+          helm repo add bitnami https://charts.bitnami.com/bitnami
+          helm repo add bitnami-archive https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami
+          helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx/
+          helm repo update
           make deps
         if: steps.list-changed.outputs.changed == 'true'
 
@@ -75,11 +82,23 @@ jobs:
         with:
           version: '3.12.0'
 
+      - name: Add helm repositories
+        run: |
+          helm repo add hazelcast https://hazelcast-charts.s3.amazonaws.com/
+          helm repo add influxdata https://helm.influxdata.com/
+          helm repo add bitnami https://charts.bitnami.com/bitnami
+          helm repo add bitnami-archive https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami
+          helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx/
+          helm repo update
+
       - name: Package charts
         run: |
           make package
 
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.6.0
+        with:
+          charts_dir: charts
+          config: .cr.yaml
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"

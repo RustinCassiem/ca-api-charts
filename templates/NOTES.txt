@@ -1,0 +1,49 @@
+{{/*
+CA API Management Suite - Umbrella Chart
+This chart deploys the complete CA API Management stack including:
+- Layer7 Gateway
+- API Developer Portal  
+- Gateway with OAuth Toolkit (OTK)
+- Analytics (Druid)
+
+Usage:
+  helm install my-api-management ca-api-management/ca-api-management
+
+The umbrella chart uses subchart dependencies. Enable/disable components
+using the values file:
+
+gateway:
+  enabled: true
+portal:
+  enabled: false
+gateway-otk:
+  enabled: false
+druid:
+  enabled: false
+*/}}
+
+{{- $gatewayOtk := index .Values "gateway-otk" }}
+{{- if not (or .Values.gateway.enabled .Values.portal.enabled $gatewayOtk.enabled .Values.druid.enabled) }}
+{{- fail "At least one component must be enabled. Please set gateway.enabled, portal.enabled, gateway-otk.enabled, or druid.enabled to true." }}
+{{- end }}
+
+CA API Management Suite has been deployed!
+
+{{- if .Values.gateway.enabled }}
+✓ Layer7 Gateway is enabled
+{{- end }}
+{{- if .Values.portal.enabled }}
+✓ API Developer Portal is enabled
+{{- end }}
+{{- if $gatewayOtk.enabled }}
+✓ Gateway with OAuth Toolkit (OTK) is enabled
+{{- end }}
+{{- if .Values.druid.enabled }}
+✓ Analytics (Druid) is enabled
+{{- end }}
+
+For more information on configuration options, see the individual chart documentation:
+- Gateway: charts/gateway/README.md
+- Portal: charts/portal/README.md
+- Gateway-OTK: charts/gateway-otk/README.md
+- Druid: charts/druid/README.md

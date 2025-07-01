@@ -11,6 +11,13 @@ help: ## Show this help message
 
 ##@ Dependencies
 deps: ## Update chart dependencies
+	@echo "Adding helm repositories..."
+	@helm repo add hazelcast https://hazelcast-charts.s3.amazonaws.com/ || true
+	@helm repo add influxdata https://helm.influxdata.com/ || true
+	@helm repo add bitnami https://charts.bitnami.com/bitnami || true
+	@helm repo add bitnami-archive https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami || true
+	@helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx/ || true
+	@helm repo update || true
 	@echo "Updating chart dependencies..."
 	@helm dependency update charts/gateway || echo "Gateway dependency update failed"
 	@helm dependency update charts/portal || echo "Portal dependency update failed"

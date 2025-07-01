@@ -15,6 +15,7 @@ helm-repos:
   - hazelcast=https://hazelcast-charts.s3.amazonaws.com/
   - influxdata=https://helm.influxdata.com/
   - bitnami=https://charts.bitnami.com/bitnami
+  - bitnami-archive=https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami
   - ingress-nginx=https://kubernetes.github.io/ingress-nginx/
 
 # Additional chart directories to look for charts
