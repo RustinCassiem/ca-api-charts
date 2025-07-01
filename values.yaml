@@ -11,6 +11,9 @@ portal:
 gateway-otk:
   enabled: false
 
+druid:
+  enabled: false
+
 # Global configuration shared across all charts
 global:
   # Image registry configuration

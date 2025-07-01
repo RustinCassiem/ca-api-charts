@@ -69,6 +69,11 @@ minio:
   port: 9000
   image:
     pullPolicy: IfNotPresent
+  # Pod Disruption Budget configuration
+  pdb:
+    create: false
+    minAvailable: 1
+    # maxUnavailable: 1
   resources:
     requests: {}
     # memory: 256Mi
@@ -84,6 +89,11 @@ zookeeper:
   replicaCount: 1
   image:
     pullPolicy: IfNotPresent
+  # Pod Disruption Budget configuration
+  pdb:
+    create: false
+    minAvailable: 1
+    # maxUnavailable: 1
   resources:
     limits: {}
     # memory: 256Mi
@@ -100,6 +110,11 @@ middlemanager:
     endPort: 65535
   image:
     pullPolicy: IfNotPresent
+  # Pod Disruption Budget configuration
+  pdb:
+    create: false
+    minAvailable: 1
+    # maxUnavailable: 1
   resources:
     requests: {}
     # memory: 4Gi
@@ -113,6 +128,11 @@ broker:
   loglevel: WARN
   image:
     pullPolicy: IfNotPresent
+  # Pod Disruption Budget configuration
+  pdb:
+    create: false
+    minAvailable: 1
+    # maxUnavailable: 1
   resources:
     requests: {}
     # memory: 1Gi
@@ -128,6 +148,11 @@ coordinator:
   replicaCount: 1
   image:
     pullPolicy: IfNotPresent
+  # Pod Disruption Budget configuration
+  pdb:
+    create: false
+    minAvailable: 1
+    # maxUnavailable: 1
   resources:
     requests: {}
     # memory: 512Mi
@@ -153,6 +178,11 @@ historical:
   loglevel: WARN
   image:
     pullPolicy: IfNotPresent
+  # Pod Disruption Budget configuration
+  pdb:
+    create: false
+    minAvailable: 1
+    # maxUnavailable: 1
   resources:
     requests: {}
     # memory: 2Gi
@@ -165,6 +195,11 @@ ingestion:
   replicaCount: 1
   image:
     pullPolicy: IfNotPresent
+  # Pod Disruption Budget configuration
+  pdb:
+    create: false
+    minAvailable: 1
+    # maxUnavailable: 1
   config:
     partitionCount: 1
   portName: ingestion-server
@@ -182,6 +217,11 @@ kafka:
   replicaCount: 1
   image:
     pullPolicy: IfNotPresent
+  # Pod Disruption Budget configuration
+  pdb:
+    create: false
+    minAvailable: 1
+    # maxUnavailable: 1
   resources:
     requests: {}
     # cpu: 100m
